@@ -1,7 +1,7 @@
 public class Point {
     public double x,y;
     public String toString(){
-        return "P(x,y)=("+x+","+y+")";
+        return "P(x,y)=("+x+","+y+")";//s
     }
     public Point translate(double x, double y){
         this.x += x;

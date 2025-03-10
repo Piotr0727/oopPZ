@@ -4,7 +4,7 @@ public class Main {
         for (int i = 0; i < size; i++) {
             if(max < s_arr[i].length())
                 max = s_arr[i].length();
-        }//sa
+        }//sas
         System.out.println(max);
     }
     public static void main(String[] args) {

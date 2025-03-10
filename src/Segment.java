@@ -4,7 +4,7 @@ public class Segment {
     public Point p1 = new Point();
     public Point p2 = new Point();
 
-    public Segment(Point p1, Point p2){
+    public Segment(Point p1, Point p2){//s
         this.p1 = p1;
         this.p2 = p2;
     }
