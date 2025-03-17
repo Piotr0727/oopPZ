@@ -1,25 +1,44 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Main {
-    static void max_seg(Segment[] s_arr,int size){
-        double max = s_arr[0].length();
-        for (int i = 0; i < size; i++) {
-            if(max < s_arr[i].length())
-                max = s_arr[i].length();
-        }//sas
-        System.out.println(max);
-    }
     public static void main(String[] args) {
-        Point p1 =  new Point();
-        p1.x = 4;
-        p1.y = 5;
-        System.out.println(p1);
-        p1.translate(-3,3);
-        System.out.println(p1);
-        Point p2 = p1.translated(-3,3);
-        System.out.println(p2);
-        Segment segment1 = new Segment(p1,p2);
-        System.out.println(segment1.length());
-        Point p3 = new Point(); Point p4 = new Point(); Point p5 = new Point(); Point p6 = new Point();
-        p3.x = 5;p3.y = 3;  p4.x = 4;p4.y = 8.5;  p5.x = 6;p5.y = 10;  p6.x = 2;p6.y = 3.5;
+//        Point p1 = new Point(30,50);
+//        Point p2 = new Point(30,70);
+//        Segment Line = new Segment(new Point(p1),new Point(p2));
+//        p1.setY(200);
+        ArrayList<Point> points = new ArrayList<Point>();
+        points.add(new Point(10,10));
+        points.add(new Point(10,70));
+        points.add(new Point(100,200));
+        Polygon poly = new Polygon(points,new Style("#ffff00","#ff00ff",5));
+        try{
+            FileWriter fw = new FileWriter("ksztalty.svg");
+            fw.write(poly.toSvg());
+            fw.close();
+        }
+        catch(IOException e){
+            System.out.println("Not workin");
+        }
+        int ch;
+        FileReader fr = null;
+        try{
+            fr = new FileReader("ksztalty.svg");
+        }
+        catch (FileNotFoundException fe){
+            System.out.println("File not found");
+        }
+        try{
+            while ((ch=fr.read())!=-1)
+                System.out.print((char)ch);
+            fr.close();
+        }
+        catch(IOException e){
+            System.out.println("ERRRRRRRORRRRRRRRRR0RRRORRRR");
+        }
 
     }
 }
