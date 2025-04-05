@@ -18,8 +18,9 @@ public class Main {
         Shape simplePolygon = new Polygon(points);
         Shape simpleEllipsis = new Ellipse(new Point(50,50),10,50);
         Shape coloredPolygon = new SolidFilledShapeDecorator(simplePolygon,"#0000FF");
+        Shape StrokePolygon = new StrokeShapeDecorator(coloredPolygon,"#B22222",5);
         picture.getShapes().add(simpleEllipsis);
-        picture.getShapes().add(coloredPolygon);
+        picture.getShapes().add(StrokePolygon);
         try{
             FileWriter fw = new FileWriter("ksztalty.svg");
             fw.write(picture.toSvg());
