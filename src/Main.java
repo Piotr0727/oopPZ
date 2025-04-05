@@ -6,18 +6,23 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-//        Point p1 = new Point(30,50);
-//        Point p2 = new Point(30,70);
-//        Segment Line = new Segment(new Point(p1),new Point(p2));
-//        p1.setY(200);
-        ArrayList<Point> points = new ArrayList<Point>();
+        ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(10,10));
         points.add(new Point(10,70));
         points.add(new Point(100,200));
-        Polygon poly = new Polygon(points,new Style("#ffff00","#ff00ff",5));
+        SvgScene picture = new SvgScene(1000,1000);
+//        Shape poly = new SolidFilledPolygon(points,"#FF0000");
+////        Shape ellipse = new Circle(new Style("#FF8888","#000000",3),new Point(200,100),30);
+//        picture.getShapes().add(poly);
+////        picture.getShapes().add(ellipse);
+        Shape simplePolygon = new Polygon(points);
+        Shape simpleEllipsis = new Ellipse(new Point(50,50),10,50);
+        Shape coloredPolygon = new SolidFilledShapeDecorator(simplePolygon,"#0000FF");
+        picture.getShapes().add(simpleEllipsis);
+        picture.getShapes().add(coloredPolygon);
         try{
             FileWriter fw = new FileWriter("ksztalty.svg");
-            fw.write(poly.toSvg());
+            fw.write(picture.toSvg());
             fw.close();
         }
         catch(IOException e){

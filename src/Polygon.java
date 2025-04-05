@@ -1,23 +1,25 @@
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class Polygon {
+public class Polygon implements Shape {
     private ArrayList<Point> points;
-    private Style gangnam;
 
     public Polygon(ArrayList<Point> points) {
+        super();
         this.points = points;
     }
     public Polygon(ArrayList<Point> points, Style gangnam) {
+//        super(gangnam);
         this.points = points;
-        this.gangnam = gangnam;
     }
-
-    public Style getGangnam() {
-        return gangnam;
-    }
-
-    public void setGangnam(Style gangnam) {
-        this.gangnam = gangnam;
+    public static Polygon createSquare(Segment s, Style style){
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(s.getP1());
+        points.add(s.getP2());
+        // Segment perpendicularSegment = s.findPerpe();
+        //points.add(perpendicularSegment.getP1);
+        //points.add(perpendicularSegment.getP2);
+        return new Polygon(points,style);
     }
 
     @Override
@@ -26,21 +28,30 @@ public class Polygon {
                 "points=" + points +
                 '}';
     }
-    public String toSvg(){
-        String beginning = "<svg height=\"220\" width=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                "  <polygon points=\"";
-
-
-        String midlle = "";
-        for (Point p : points){
-            midlle += p.getX() + "," +p.getY() + " ";
+//    public String toSvg(){
+//        String beginning = "<polygon points=\"";
+//
+//
+//        String midlle = "";
+//        for (Point p : points){
+//            midlle += p.getX() + "," +p.getY() + " ";
+//        }
+//        String ending ="\" " +
+    //                gangnam.toSvg() +
+//                "\" />\n";
+//        return beginning + midlle + ending;
+//    }
+//
+    public String toSvg(String param){
+        String pointsString = "";
+        for(Point point : points) {
+            pointsString += point.getX() + "," + point.getY() + " ";
         }
-
-        String ending =        "\" " +
-                gangnam.toSvg() +
-                "\" />\n" +
-                "</svg>";
-        return beginning + midlle + ending;
+        return String.format(Locale.ENGLISH, "<polygon points=\"%s\"  %s/>", pointsString,param);
     }
 
+    @Override
+    public String toSvg() {
+        return toSvg("");
+    }
 }
