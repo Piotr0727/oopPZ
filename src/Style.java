@@ -32,6 +32,7 @@ public class Style {
         this.strokeColor = strokeColor;
         this.strokeWidth = strokeWidth;
     }
+
     public String toSvg(){
         return "style=\"fill:" +
                 fillColor +

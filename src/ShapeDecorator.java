@@ -1,5 +1,6 @@
-public class ShapeDecorator implements Shape {
+public class ShapeDecorator implements Shape{
     protected Shape decoratedShape;
+
     @Override
     public String toSvg() {
         return decoratedShape.toSvg();
@@ -9,7 +10,8 @@ public class ShapeDecorator implements Shape {
     public String toSvg(String param) {
         return decoratedShape.toSvg(param);
     }
-    public ShapeDecorator(Shape decoratedShape){
+
+    public ShapeDecorator(Shape decoratedShape) {
         this.decoratedShape = decoratedShape;
     }
 }
